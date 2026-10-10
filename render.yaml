@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: giftshop-bd-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npx prisma generate && npx prisma db push && npm run db:seed && npm --prefix server run build
+    startCommand: node server/dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:./dev.db
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_DEFAULT_EMAIL
+        value: admin@giftshop.com.bd
+      - key: ADMIN_DEFAULT_PASSWORD
+        value: AdminPass123!
+      - key: LOCAL_STORAGE_PATH
+        value: ./storage/uploads
