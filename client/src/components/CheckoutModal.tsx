@@ -110,7 +110,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
       'Please confirm my gift order.'
     ];
     const message = encodeURIComponent(lines.join('\n'));
-    return 'https://wa.me/8801700000000?text=' + message;
+    return 'https://wa.me/8801710318776?text=' + message;
   };
 
   return (
@@ -257,7 +257,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose })
                 <div className="p-3 bg-pink-50 border border-pink-200 rounded-xl space-y-2">
                   <p className="text-[11px] font-bold text-pink-900">
                     {paymentMethod === 'BKASH_MANUAL' ? 'বিকাশ নম্বর:' : 'নগদ নম্বর:'}{' '}
-                    <span className="underline">01700-000000</span> (Personal)
+                    <span className="underline">01710-318776</span> (Personal)
                   </p>
                   <p className="text-[10px] text-pink-700">
                     {lang === 'bn'
