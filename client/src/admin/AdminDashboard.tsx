@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { AdminOrderDetailModal } from './components/AdminOrderDetailModal';
-import { Lock, LogOut, Search, RefreshCw, Loader2, AlertCircle } from 'lucide-react';
+import { AdminOrderDetailModal } from './AdminOrderDetailModal';
+import { Lock, LogOut, Search, RefreshCw, Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 
 const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || '';
 
-export const App: React.FC = () => {
+interface Props {
+  onBackToStore: () => void;
+}
+
+export const AdminDashboard: React.FC<Props> = ({ onBackToStore }) => {
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('giftshop_admin_token'));
   const [email, setEmail] = useState('admin@giftshop.com.bd');
   const [password, setPassword] = useState('AdminPass123!');
@@ -72,7 +76,17 @@ export const App: React.FC = () => {
 
   if (!token) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4">
+        <div className="w-full max-w-sm mb-4 flex justify-start">
+          <button
+            onClick={onBackToStore}
+            className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Customer Store</span>
+          </button>
+        </div>
+
         <div className="bg-white rounded-3xl max-w-sm w-full p-8 shadow-2xl">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold">
@@ -80,7 +94,7 @@ export const App: React.FC = () => {
             </div>
             <div>
               <h2 className="font-black text-slate-900 text-lg leading-tight">Admin Operations</h2>
-              <span className="text-xs text-slate-400">GiftShop BD Portal</span>
+              <span className="text-xs text-slate-400">GiftShop BD Portal (/admin)</span>
             </div>
           </div>
 
@@ -135,16 +149,24 @@ export const App: React.FC = () => {
             </div>
             <div>
               <h1 className="font-black text-sm sm:text-base leading-tight">GiftShop BD — Operations</h1>
-              <span className="text-[11px] text-slate-400">Standalone Admin System</span>
+              <span className="text-[11px] text-slate-400">Path: /admin</span>
             </div>
           </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600/20 hover:bg-red-600/30 text-red-400 text-xs font-bold"
-          >
-            <LogOut className="w-3.5 h-3.5" />
-            <span>Logout</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onBackToStore}
+              className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-300"
+            >
+              Customer Store
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600/20 hover:bg-red-600/30 text-red-400 text-xs font-bold"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Logout</span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -287,4 +309,4 @@ export const App: React.FC = () => {
     </div>
   );
 };
-export default App;
+export default AdminDashboard;

@@ -5,13 +5,11 @@
   "description": "Production Online Printing & Personalized Gift Shop for Bangladesh",
   "workspaces": [
     "server",
-    "client",
-    "admin"
+    "client"
   ],
   "scripts": {
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
-    "dev:admin": "npm --prefix admin run dev",
     "build:all": "npm --prefix server run build && npm --prefix client run build && npm --prefix admin run build",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
